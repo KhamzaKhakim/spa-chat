@@ -1,20 +1,22 @@
-import { createRootRoute, Link, Outlet } from "@tanstack/react-router";
+import { createRootRoute, Outlet } from "@tanstack/react-router";
 import { TanStackRouterDevtools } from "@tanstack/react-router-devtools";
+import ChatList from "../components/chat-list";
 
 const RootLayout = () => (
   <>
-    <div className="p-2 flex gap-2">
-      <Link to="/" className="[&.active]:font-bold">
-        Home
-      </Link>{" "}
-      <Link to="/about" className="[&.active]:font-bold">
-        About
-      </Link>
+    <ChatList />
+    <div className="ml-80">
+      <Outlet />
     </div>
-    <hr />
-    <Outlet />
     <TanStackRouterDevtools />
   </>
 );
 
-export const Route = createRootRoute({ component: RootLayout });
+export const Route = createRootRoute({
+  component: RootLayout,
+  notFoundComponent: () => (
+    <div className="min-h-screen flex items-center justify-center">
+      <h2 className="text-4xl font-extrabold">404 Not Found</h2>
+    </div>
+  ),
+});
