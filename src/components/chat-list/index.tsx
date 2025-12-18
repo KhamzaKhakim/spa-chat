@@ -1,6 +1,6 @@
-// import { Link } from "@tanstack/react-router";
 import { Link } from "@tanstack/react-router";
-import defaultPfpUrl from "../../assets/Default_pfp.jpg";
+import defaultPfpUrl from "@/assets/Default_pfp.jpg";
+import type { User } from "@/types";
 
 export default function ChatList() {
   const chatsArr: User[] = [
@@ -8,7 +8,7 @@ export default function ChatList() {
     { name: "Friend that never responds", username: "friend" },
   ];
   return (
-    <div className="bg-gray-200 fixed w-80 h-full">
+    <div className="bg-gray-200 fixed w-80 h-full border-gray-400 border-r-2">
       <h1 className="text-2xl text-center m-2">Chat App</h1>
       <div className="flex flex-col">
         {chatsArr.map((c) => (
@@ -18,12 +18,6 @@ export default function ChatList() {
     </div>
   );
 }
-
-type User = {
-  name: string;
-  img?: string;
-  username: string;
-};
 
 function ChatCard({ user }: { user: User }) {
   return (
