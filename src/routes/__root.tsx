@@ -1,7 +1,8 @@
-import { createRootRoute, Outlet } from "@tanstack/react-router";
+import { createRootRouteWithContext, Outlet } from "@tanstack/react-router";
 import { TanStackRouterDevtools } from "@tanstack/react-router-devtools";
 import ChatList from "../components/chat-list";
 import ChatContextProvider from "@/contexts/chat-context";
+import type { User } from "@/types";
 
 const RootLayout = () => (
   <>
@@ -15,11 +16,6 @@ const RootLayout = () => (
   </>
 );
 
-export const Route = createRootRoute({
+export const Route = createRootRouteWithContext<User>()({
   component: RootLayout,
-  notFoundComponent: () => (
-    <div className="min-h-screen flex items-center justify-center">
-      <h2 className="text-4xl font-extrabold">404 Not Found</h2>
-    </div>
-  ),
 });

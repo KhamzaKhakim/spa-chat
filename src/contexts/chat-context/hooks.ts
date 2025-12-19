@@ -8,9 +8,7 @@ export function useChatContext() {
 export function useUpdateChatContext() {
   const context = useContext(UpdateChatContext);
   if (!context) {
-    throw new Error(
-      "useUpdateChatContext must be used within ChatContextProvider"
-    );
+    throw new Error("Provider not found for UpdateChatContext");
   }
   return context;
 }

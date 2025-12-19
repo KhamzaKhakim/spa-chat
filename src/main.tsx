@@ -6,7 +6,19 @@ import { RouterProvider, createRouter } from "@tanstack/react-router";
 
 import { routeTree } from "./routeTree.gen";
 
-const router = createRouter({ routeTree });
+const router = createRouter({
+  routeTree,
+  context: {
+    username: "user",
+    name: "You",
+    friendUsers: ["bot", "friend"],
+  },
+  defaultNotFoundComponent: () => (
+    <div className="min-h-screen flex items-center justify-center">
+      <h2 className="text-4xl font-extrabold">404 Not Found aa</h2>
+    </div>
+  ),
+});
 
 declare module "@tanstack/react-router" {
   interface Register {
