@@ -3,3 +3,10 @@ export type User = {
   name: string;
   img?: string;
 };
+
+export type Message = {
+  from: string;
+  to: string;
+  text: string;
+  createdAt: string;
+};

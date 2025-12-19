@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import defaultPfpUrl from "@/assets/Default_pfp.jpg";
+import defaultPfpUrl from "@/assets/default_pfp.jpg";
 import type { User } from "@/types";
 
 export default function ChatList() {
@@ -12,7 +12,7 @@ export default function ChatList() {
       <h1 className="text-2xl text-center m-2">Chat App</h1>
       <div className="flex flex-col">
         {chatsArr.map((c) => (
-          <ChatCard user={c} />
+          <ChatCard key={c.username} user={c} />
         ))}
       </div>
     </div>

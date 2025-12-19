@@ -7,11 +7,11 @@ export const Route = createFileRoute("/chats/$username")({
 });
 
 function RouteComponent() {
-  // const { username } = Route.useParams();
+  const { username } = Route.useParams();
   return (
     <div className="flex flex-col min-h-screen">
-      <ChatWindow />
-      <MessageInput />
+      <ChatWindow username={username} />
+      <MessageInput username={username} />
     </div>
   );
 }

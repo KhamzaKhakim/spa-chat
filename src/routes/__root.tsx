@@ -1,13 +1,16 @@
 import { createRootRoute, Outlet } from "@tanstack/react-router";
 import { TanStackRouterDevtools } from "@tanstack/react-router-devtools";
 import ChatList from "../components/chat-list";
+import ChatContextProvider from "@/contexts/chat-context";
 
 const RootLayout = () => (
   <>
     <ChatList />
-    <div className="ml-80">
-      <Outlet />
-    </div>
+    <ChatContextProvider>
+      <div className="ml-80">
+        <Outlet />
+      </div>
+    </ChatContextProvider>
     <TanStackRouterDevtools />
   </>
 );
