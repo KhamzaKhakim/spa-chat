@@ -1,7 +1,7 @@
 import { createFileRoute, notFound, redirect } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/")({
-  beforeLoad: ({ context }) => {
+  loader: ({ context }) => {
     const redirectUser = context.user.friendUsers?.[0].username;
 
     if (!redirectUser) throw notFound();
