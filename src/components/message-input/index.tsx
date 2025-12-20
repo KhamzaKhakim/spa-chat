@@ -13,9 +13,9 @@ export default function MessageInput({ username }: { username: string }) {
   };
 
   return (
-    <div className="bg-red-300 sticky bottom-0">
+    <div className=" sticky bottom-0">
       <form
-        className=" h-16 flex bg-gray-200 border-gray-400 border-t-2 bottom-0 right-0"
+        className=" h-16 flex bg-input border-gray-400 border-t-2 bottom-0 right-0"
         onSubmit={handleSubmit}
       >
         <input
@@ -26,8 +26,8 @@ export default function MessageInput({ username }: { username: string }) {
           value={text}
           onChange={(e) => setText(e.target.value)}
         />
-        <button className="py-4 px-6 border-l-2 bg-gray-300! hover:bg-gray-400!">
-          Submit
+        <button className="py-4 px-6 border-l-2 border-gray-400 bg-gray-200! hover:bg-gray-300!">
+          Send
         </button>
       </form>
     </div>

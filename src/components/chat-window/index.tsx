@@ -23,7 +23,7 @@ export default function ChatWindow({ chatPartner }: { chatPartner: string }) {
   }, [chatPartner, messages]);
 
   return (
-    <div className="flex-1 bg-gray-300 overflow-y-auto">
+    <div className="bg-primary flex-1 overflow-y-auto">
       <div className="flex flex-col">
         {messages?.map((m, index) => (
           <MessageCard key={`${m.text}-${index}`} message={m} />
@@ -41,23 +41,18 @@ function MessageCard({ message }: { message: Message }) {
 
   return (
     <div className="flex items-end mt-4 ml-4">
-      <svg
-        className="size-3"
-        viewBox="0 0 8 8"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M 8 8 L 8 0 Q 8 8 0 8 Z"
-          fill={myMessage ? "var(--color-gray-100)" : "var(--color-gray-300)"}
-        />
-      </svg>
       <div
-        className={`flex flex-col ${myMessage ? "bg-gray-100" : "bg-gray-300"} px-4 py-1 rounded-2xl rounded-bl-none`}
+        className={`flex flex-col ${myMessage ? "bg-send-message text-white" : "bg-receive-message border-2 border-gray-200"}
+        px-4 py-1 rounded-2xl rounded-bl-none relative`}
       >
         <h6 className="text-md font-bold">{message.from}</h6>
-        <div className="flex gap-2 items-end max-w-200">
+        <div className="flex gap-2 items-end max-w-200 ">
           <p className="text-md wrap-anywhere">{message.text}</p>
-          <p className="text-xs text-gray-600">{message.createdAt}</p>
+          <p
+            className={`text-xs ${myMessage ? "text-gray-200" : "text-gray-600"}`}
+          >
+            {message.createdAt}
+          </p>
         </div>
       </div>
     </div>
