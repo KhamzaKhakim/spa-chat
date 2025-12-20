@@ -1,21 +1,22 @@
-import type { Message, User } from "@/types";
+import type { Message } from "@/types";
 import { ChatContext, UpdateChatContext } from "./context";
 import { useEffect, useState } from "react";
 import { socket } from "@/socket";
+import { useRouteContext } from "@tanstack/react-router";
 
 const STORAGE_KEY = "chat_state";
 
 export default function ChatContextProvider({
   children,
-  user,
 }: {
   children: React.ReactNode;
-  user: User;
 }) {
   const [chatState, setChatState] = useState<Record<string, Message[]>>(() => {
     const stored = sessionStorage.getItem(STORAGE_KEY);
     return stored ? JSON.parse(stored) : {};
   });
+
+  const { user } = useRouteContext({ from: "__root__" });
 
   useEffect(() => {
     socket.connect();

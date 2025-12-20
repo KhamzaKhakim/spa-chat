@@ -1,14 +1,9 @@
 import { useChatContext } from "@/contexts/chat-context/hooks";
 import { useEffect, useRef } from "react";
 import type { Message } from "@/types";
+import { useRouteContext } from "@tanstack/react-router";
 
-export default function ChatWindow({
-  chatPartner,
-  currentUser,
-}: {
-  chatPartner: string;
-  currentUser: string;
-}) {
+export default function ChatWindow({ chatPartner }: { chatPartner: string }) {
   const chatState = useChatContext();
   const messages = chatState[chatPartner];
 
@@ -31,11 +26,7 @@ export default function ChatWindow({
     <div className="flex-1 bg-gray-300 overflow-y-auto">
       <div className="flex flex-col">
         {messages?.map((m, index) => (
-          <MessageCard
-            key={`${m.text}-${index}`}
-            message={m}
-            currentUser={currentUser}
-          />
+          <MessageCard key={`${m.text}-${index}`} message={m} />
         ))}
         <div ref={messagesEndRef} className="mb-4" />
       </div>
@@ -43,14 +34,11 @@ export default function ChatWindow({
   );
 }
 
-function MessageCard({
-  message,
-  currentUser,
-}: {
-  message: Message;
-  currentUser: string;
-}) {
-  const isCurrentUser = message.from === currentUser;
+function MessageCard({ message }: { message: Message }) {
+  const { user: currentUser } = useRouteContext({ from: "__root__" });
+
+  const myMessage = message.from === currentUser.username;
+
   return (
     <div className="flex items-end mt-4 ml-4">
       <svg
@@ -60,13 +48,11 @@ function MessageCard({
       >
         <path
           d="M 8 8 L 8 0 Q 8 8 0 8 Z"
-          fill={
-            isCurrentUser ? "var(--color-gray-100)" : "var(--color-gray-300)"
-          }
+          fill={myMessage ? "var(--color-gray-100)" : "var(--color-gray-300)"}
         />
       </svg>
       <div
-        className={`flex flex-col ${isCurrentUser ? "bg-gray-100" : "bg-gray-300"} px-4 py-1 rounded-2xl rounded-bl-none`}
+        className={`flex flex-col ${myMessage ? "bg-gray-100" : "bg-gray-300"} px-4 py-1 rounded-2xl rounded-bl-none`}
       >
         <h6 className="text-md font-bold">{message.from}</h6>
         <div className="flex gap-2 items-end max-w-200">

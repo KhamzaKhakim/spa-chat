@@ -1,17 +1,15 @@
-import { Link } from "@tanstack/react-router";
+import { Link, useRouteContext } from "@tanstack/react-router";
 import defaultPfpUrl from "@/assets/default_pfp.jpg";
 import type { User } from "@/types";
 
 export default function ChatList() {
-  const chatsArr: User[] = [
-    { name: "Bot", username: "bot" },
-    { name: "Friend that never responds", username: "friend" },
-  ];
+  const { user } = useRouteContext({ from: "__root__" });
+
   return (
     <div className="bg-gray-200 fixed w-80 h-full border-gray-400 border-r-2">
       <h1 className="text-2xl text-center m-2">Chat App</h1>
       <div className="flex flex-col">
-        {chatsArr.map((c) => (
+        {user.friendUsers?.map((c) => (
           <ChatCard key={c.username} user={c} />
         ))}
       </div>

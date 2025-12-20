@@ -5,21 +5,22 @@ import MessageInput from "@/components/message-input";
 export const Route = createFileRoute("/chats/$username")({
   component: RouteComponent,
   loader: ({ context, params }) => {
-    if (!context.friendUsers?.includes(params.username)) {
+    if (
+      !context.user.friendUsers
+        ?.map((u) => u.username)
+        .includes(params.username)
+    ) {
       throw notFound();
     }
-
-    return context.username;
   },
 });
 
 function RouteComponent() {
   const { username: chatPartner } = Route.useParams();
-  const currentUser = Route.useLoaderData();
 
   return (
     <div className="flex flex-col min-h-screen">
-      <ChatWindow chatPartner={chatPartner} currentUser={currentUser} />
+      <ChatWindow chatPartner={chatPartner} />
       <MessageInput key={chatPartner} username={chatPartner} />
     </div>
   );

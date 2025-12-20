@@ -2,7 +2,7 @@ export type User = {
   username: string;
   name: string;
   img?: string;
-  friendUsers?: string[];
+  friendUsers?: User[];
 };
 
 export type Message = {

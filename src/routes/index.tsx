@@ -1,11 +1,15 @@
-import { createFileRoute, redirect } from "@tanstack/react-router";
+import { createFileRoute, notFound, redirect } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/")({
-  beforeLoad: () => {
+  beforeLoad: ({ context }) => {
+    const redirectUser = context.user.friendUsers?.[0].username;
+
+    if (!redirectUser) throw notFound();
+
     throw redirect({
       to: "/chats/$username",
       params: {
-        username: "bot",
+        username: redirectUser,
       },
     });
   },

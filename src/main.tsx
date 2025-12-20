@@ -9,9 +9,14 @@ import { routeTree } from "./routeTree.gen";
 const router = createRouter({
   routeTree,
   context: {
-    username: "user",
-    name: "You",
-    friendUsers: ["bot", "friend"],
+    user: {
+      username: "user",
+      name: "You",
+      friendUsers: [
+        { name: "Bot", username: "bot" },
+        { name: "Ghosting friend", username: "friend" },
+      ],
+    },
   },
   defaultNotFoundComponent: () => (
     <div className="min-h-screen flex items-center justify-center">

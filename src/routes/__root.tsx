@@ -5,11 +5,10 @@ import ChatContextProvider from "@/contexts/chat-context";
 import type { User } from "@/types";
 
 const RootLayout = () => {
-  const user = Route.useLoaderData();
   return (
     <>
       <ChatList />
-      <ChatContextProvider user={user}>
+      <ChatContextProvider>
         <div className="ml-80">
           <Outlet />
         </div>
@@ -19,7 +18,7 @@ const RootLayout = () => {
   );
 };
 
-export const Route = createRootRouteWithContext<User>()({
+export const Route = createRootRouteWithContext<{ user: User }>()({
   component: RootLayout,
   loader: ({ context }) => context,
 });
