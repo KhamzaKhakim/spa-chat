@@ -15,7 +15,7 @@ const router = createRouter({
   },
   defaultNotFoundComponent: () => (
     <div className="min-h-screen flex items-center justify-center">
-      <h2 className="text-4xl font-extrabold">404 Not Found aa</h2>
+      <h2 className="text-4xl font-extrabold">404 Not Found</h2>
     </div>
   ),
 });
