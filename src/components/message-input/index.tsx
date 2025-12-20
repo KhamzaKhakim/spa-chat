@@ -1,4 +1,5 @@
 import { useUpdateChatContext } from "@/contexts/chat-context/hooks";
+import { Send } from "lucide-react";
 import { useState } from "react";
 
 export default function MessageInput({ username }: { username: string }) {
@@ -27,7 +28,7 @@ export default function MessageInput({ username }: { username: string }) {
           onChange={(e) => setText(e.target.value)}
         />
         <button className="py-4 px-6 border-l-2 border-gray-400 bg-gray-200! hover:bg-gray-300!">
-          Send
+          <Send />
         </button>
       </form>
     </div>
